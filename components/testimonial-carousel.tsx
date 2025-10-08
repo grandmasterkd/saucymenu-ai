@@ -47,6 +47,14 @@ export function TestimonialCarousel() {
   const current = testimonials[currentIndex]
 
   return (
+    <main>
+
+    <h2 className="text-xl w-full md:max-w-[30%] mx-auto md:text-4xl font-medium text-[#F8E6D2] text-center mb-16">
+          Track Your Performance And Start Profiting From It
+        </h2>
+        <section className="px-8 md:px-32" >
+
+     
     <div className="relative bg-[#474747] rounded-xl p-8 md:p-12">
       <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
         {/* Logo */}
@@ -100,5 +108,7 @@ export function TestimonialCarousel() {
         ))}
       </div>
     </div>
+       </section>
+     </main>
   )
 }

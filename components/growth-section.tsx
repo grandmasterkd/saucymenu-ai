@@ -1,13 +1,13 @@
 export function GrowthSection() {
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black text-center mb-20">
+    <section className="py-20 ">
+      <div className="px-8 md:px-32 container mx-auto">
+        <h2 className="text-xl w-full md:max-w-[45%] mx-auto md:text-4xl font-medium text-[#E68C24] text-center mb-16">
           Global Coverage, On-The-Ground Expertise
         </h2>
 
         {/* Stats with Vertical Lines */}
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative mx-auto">
           {/* Vertical Lines */}
           <div className="absolute inset-0 flex justify-between pointer-events-none">
             <div className="w-px bg-gray-200 h-full"></div>
@@ -17,7 +17,7 @@ export function GrowthSection() {
           </div>
 
           {/* Stats Content */}
-          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 px-4 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-3">
             <StatCard
               title="100K + Concurrent Users"
               description="Handle massive traffic during peak hours without compromising performance or user experience"
@@ -42,7 +42,7 @@ export function GrowthSection() {
 function StatCard({ title, description }: { title: string; description: string }) {
   return (
     <div className="text-left max-w-xs">
-      <h3 className="text-xl md:text-2xl font-semibold text-black mb-3 leading-tight">{title}</h3>
+      <h3 className="text-2xl max-w-[80%] md:text-2xl font-medium mb-3 leading-tight">{title}</h3>
       <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
     </div>
   )
