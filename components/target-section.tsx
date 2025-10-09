@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export function TargetSection() {
   return (
     <section className="py-20">
@@ -23,7 +25,7 @@ export function TargetSection() {
           <TargetCard
             title="Large Scale Restaurants"
             description="Enterprise-grade solutions for restaurant groups managing multiple locations"
-            image="/upscale-large-restaurant-dining-room-with-elegant-.jpg"
+            image="/3d-blocks-blocks-composition-52.png"
           />
 
           <TargetCard
@@ -49,18 +51,20 @@ function TargetCard({
   return (
     <div
       className="relative h-[400px] rounded-3xl overflow-hidden bg-[#343434] group cursor-pointer"
-      style={{
-        backgroundImage: `url('${image}')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+     
     >
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#343434] via-[#343434]/60 to-transparent"></div>
+     
+
+<div className="h-[65%] grid place-items-center" >
+  <Image src={image} alt="block" fill className="object-cover" />
+</div>
+    
+     <div className="absolute inset-0 bg-gradient-to-t from-[#343434] via-[#343434]/60 to-transparent"></div>
 
       {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 p-7">
-        <h3 className="text-2xl max-w-1/2 font-medium text-white mb-2">{title}</h3>
+        <h3 className="text-2xl max-w-1/2 font-medium text-white">{title}</h3>
         <p className="text-sm text-white/40 leading-relaxed">{description}</p>
       </div>
     </div>

@@ -9,7 +9,7 @@ export function GrowthSection() {
         {/* Stats with Vertical Lines */}
         <div className="relative mx-auto">
           {/* Vertical Lines */}
-          <div className="absolute inset-0 flex justify-between pointer-events-none">
+          <div className="hidden inset-0 justify-between pointer-events-none">
             <div className="w-px bg-gray-200 h-full"></div>
             <div className="w-px bg-gray-200 h-full"></div>
             <div className="w-px bg-gray-200 h-full"></div>
