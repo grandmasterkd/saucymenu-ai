@@ -16,9 +16,15 @@ export function HeroSection() {
             barriers, and deliver personalized dining experiences to every customer.
           </p>
 
-          <Button className="bg-[#F7941D] text-white hover:bg-[#E68C24] rounded-lg p-4 text-sm h-auto">
+<div className="flex items-center gap-2" >
+  <label htmlFor="book-now">
+            <input id="book-now" placeholder="myrestaurant@restaurant.co.uk" type="text" className="w-[300px] bg-[#F1F1F1] h-12 rounded-lg px-4 text-sm" />
+          </label>
+          <Button className="bg-[#F7941D] text-white hover:bg-[#E68C24] rounded-lg h-12 px-3 text-xs">
             Book A Demo
           </Button>
+</div>
+         
         </div>
 
         {/* Hero Image with Annotations */}

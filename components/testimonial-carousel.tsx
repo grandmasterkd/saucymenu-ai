@@ -8,21 +8,21 @@ const testimonials = [
   {
     id: 1,
     restaurant: "La Bella Cucina",
-    logo: "/italian-restaurant-logo.png",
+    logo: "/female-wedding-planner-working-ceremony.webp",
     message:
       "Saucy Menu transformed our customer experience. The AI recommendations increased our average order value by 35%, and our international guests love the instant translation feature.",
   },
   {
     id: 2,
     restaurant: "Dragon Palace",
-    logo: "/asian-restaurant-logo.jpg",
+    logo: "/lady-grey-suit-smiling-camera-background-stylish-cafe-with-lights.webp",
     message:
       "The analytics dashboard helped us identify our best-performing dishes and optimize our menu. We saw a 42% increase in revenue within the first three months of implementation.",
   },
   {
     id: 3,
     restaurant: "Burger Haven",
-    logo: "/burger-restaurant-logo.png",
+    logo: "/portrait-happy-zero-waste-shop-vendor.webp",
     message:
       "Our fast-paced environment needed a solution that could keep up. Saucy Menu handles our peak hours flawlessly, and the upselling features have been a game-changer for our bottom line.",
   },
@@ -55,11 +55,11 @@ export function TestimonialCarousel() {
         <section className="px-8 md:px-32" >
 
      
-    <div className="relative bg-[#474747] rounded-xl p-8 md:p-12">
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+    <div className="relative bg-[#474747] rounded-3xl p-8 md:p-12 h-full">
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
         {/* Logo */}
         <div className="flex-shrink-0">
-          <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-white">
+          <div className="relative aspect-square rounded-3xl overflow-hidden bg-white">
             <Image
               src={current.logo || "/placeholder.svg"}
               alt={`${current.restaurant} logo`}
@@ -70,13 +70,14 @@ export function TestimonialCarousel() {
         </div>
 
         {/* Content */}
-        <div className="flex-1">
-          <h4 className="text-xl font-semibold text-white mb-3">{current.restaurant}</h4>
+        <div>
+          <div className="flex-1">
+          <h2 className="text-2xl font-medium text-white mb-3">{current.restaurant}</h2>
           <p className="text-gray-300 text-sm leading-relaxed">{current.message}</p>
-        </div>
+          </div>
 
         {/* Navigation Buttons */}
-        <div className="flex gap-2 flex-shrink-0">
+          <div className="hidden  gap-2 flex-shrink-0">
           <button
             onClick={prevTestimonial}
             className="p-2 rounded-lg bg-[#343434] hover:bg-[#FF6A00] text-white transition-colors"
@@ -91,11 +92,8 @@ export function TestimonialCarousel() {
           >
             <ChevronRight className="w-5 h-5" />
           </button>
-        </div>
-      </div>
-
-      {/* Dots Indicator */}
-      <div className="flex justify-center gap-2 mt-6">
+          </div>
+            <div className="flex gap-2 mt-6">
         {testimonials.map((_, index) => (
           <button
             key={index}
@@ -107,6 +105,12 @@ export function TestimonialCarousel() {
           />
         ))}
       </div>
+        </div>
+       
+      </div>
+
+      {/* Dots Indicator */}
+    
     </div>
        </section>
      </main>
