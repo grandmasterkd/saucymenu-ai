@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { TargetSection } from "@/components/target-section"
-import { GrowthSection } from "@/components/growth-section"
+// import { GrowthSection } from "@/components/growth-section"
 import { ProblemsSection } from "@/components/problems-section"
 import { SolutionsSection } from "@/components/solutions-section"
 import { PricingSection } from "@/components/pricing-section"
@@ -14,7 +14,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <TargetSection />
-      <GrowthSection />
+      {/* <GrowthSection /> */}
       <ProblemsSection />
       <SolutionsSection />
       <PricingSection />

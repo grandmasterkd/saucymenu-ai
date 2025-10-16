@@ -1,89 +1,110 @@
 "use client"
 
-import { useState } from "react"
-import { ChevronRight } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
-import { TestimonialCarousel } from "@/components/testimonial-carousel"
+// import { TestimonialCarousel } from "@/components/testimonial-carousel"
 
 const problems = [
   {
     id: "language",
+    number: "1",
     title: "Language Barrier",
     description:
       "Break down communication barriers with instant multi-language translation, allowing customers from any country to browse your menu in their native language.",
-    image: "/speak-globe.webp",
+    image: "/language-barrier.webp",
   },
   {
     id: "performance",
+    number: "2",
     title: "Food & Menu Performance",
     description:
       "Get real-time insights into which dishes are performing well, identify underperforming items, and optimize your menu based on actual customer behavior and preferences.",
-    image: "/glass-pie-chart.webp",
+    image: "/food-performance.webp",
   },
   {
     id: "experience",
+    number: "3",
     title: "Customer Experience & Reviews",
     description:
       "Capture instant feedback, monitor satisfaction in real-time, and respond to customer concerns before they leave negative reviews online.",
-    image: "/yellow-pink-glass-heart.webp",
+    image: "/customer-experience.webp",
   },
 ]
 
 export function ProblemsSection() {
   const [activeId, setActiveId] = useState("language")
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
   const activeProblem = problems.find((p) => p.id === activeId) || problems[0]
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 },
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="py-20 bg-[#343434]">
-      <div className="container mx-auto">
-        <h2 className="text-xl w-full md:max-w-[30%] mx-auto md:text-4xl font-medium text-[#F8E6D2] text-center mb-16">
-          What Is Holding Your Restaurant Back Today
-        </h2>
+    <section ref={sectionRef} className="py-20 bg-[#343434]">
+      <div className="container mx-auto px-8 md:px-32">
+        <div
+          className={`flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-12 transition-all duration-700 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <h2 className="text-2xl md:text-3xl font-medium text-[#F8E6D2] max-w-sm">
+            What Is Holding Your Restaurant Back Today
+          </h2>
 
-        {/* Two Column Layout */}
-        <div className="px-8 md:px-32 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {/* Left Column - Problem List */}
-          <div className="space-y-4">
-            {problems.map((problem) => (
-              <button
-                key={problem.id}
-                onClick={() => setActiveId(problem.id)}
-                className={`w-full text-left p-7 rounded-3xl transition-all ${
-                  activeId === problem.id ? "bg-[#474747]" : "bg-[#474747] opacity-60 hover:opacity-80"
-                }`}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <h3
-                    className={`text-2xl font-medium ${activeId === problem.id ? "text-[#FF6A00]" : "text-gray-400"}`}
-                  >
-                    {problem.title}
-                  </h3>
-                  <ChevronRight className={`w-6 h-6 ${activeId === problem.id ? "text-[#FF6A00]" : "text-gray-400"}`} />
-                </div>
-                <p className={`text-sm leading-relaxed ${activeId === problem.id ? "text-white" : "text-gray-500"}`}>
-                  {problem.description}
-                </p>
-              </button>
-            ))}
-          </div>
-
-          {/* Right Column - Image Display */}
-          <div className="relative h-96 lg:h-full min-h-[400px] rounded-3xl flex items-center justify-center overflow-hidden bg-[#474747]">
-            <Image
-              src={activeProblem.image || "/placeholder.svg"}
-              alt={activeProblem.title}
-              width={350}
-              height={350}
-              className="object-contain grayscale hover:grayscale-0 transition-opacity duration-300"
-            />
+          <div className="lg:max-w-md">
+            <h3 className="text-xl md:text-2xl font-medium text-[#FF6A00] mb-2">
+              {activeProblem.number}. {activeProblem.title}
+            </h3>
+            <p className="text-white text-xs leading-relaxed">{activeProblem.description}</p>
           </div>
         </div>
 
+        <div
+          className={`flex gap-4 transition-all duration-700 delay-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          {problems.map((problem) => (
+            <button
+              key={problem.id}
+              onClick={() => setActiveId(problem.id)}
+              className={`relative rounded-3xl overflow-hidden bg-[#474747] cursor-pointer group transition-all duration-500 h-[500px] ${
+                problem.id === activeId ? "w-[80%]" : "w-[10%] hover:scale-[1.02]"
+              }`}
+            >
+              <Image
+                src={problem.image || "/placeholder.svg"}
+                alt={problem.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </button>
+          ))}
+        </div>
+
         {/* Testimonial Section */}
-    
- <TestimonialCarousel />
-    
-       
+        <div
+          className={`transition-all duration-700 delay-300 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          {/* <TestimonialCarousel /> */}
+        </div>
       </div>
     </section>
   )
