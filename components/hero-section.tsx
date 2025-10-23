@@ -7,11 +7,11 @@ export function HeroSection() {
       <div className="container mx-auto">
         {/* Hero Body - Centered */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto gap-y-4">
-          <h1 className="text-5xl font-semibold text-black leading-tight">
+          <h1 className="text-5xl font-semibold text-black tracking-tighter leading-tight">
             Integrate AI Into Your Restaurant And <span className="font-serif italic">Pay Yourself Back</span>
           </h1>
 
-          <p className="text-base text-gray-600 max-w-2xl leading-relaxed">
+          <p className="text-base text-black/50 max-w-2xl leading-relaxed">
             Transform your restaurant operations with AI-powered digital menus that increase revenue, break language
             barriers, and deliver personalized dining experiences to every customer.
           </p>
