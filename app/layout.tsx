@@ -19,11 +19,14 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Saucy Menu - AI-Powered Restaurant Solutions",
-  description: "Integrate AI into your restaurant and transform customer experience with intelligent digital menus",
-  generator: "v0.app",
+  title: "Saucy Menu - Intelligent Restaurant Assistant",
+  description: "Transform your restaurant operations with AI-powered digital menus that increase revenue, break language barriers, and deliver personalized dining experiences to every customer.",
+  icons: {
+    icon: "/saucymenu-logomain.svg",
+    shortcut: "/saucymenu-logomain.svg",
+    apple: "/saucymenu-logomain.svg", 
+  },
 }
-
 export default function RootLayout({
   children,
 }: Readonly<{

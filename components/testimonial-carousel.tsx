@@ -1,118 +1,97 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 
 const testimonials = [
   {
     id: 1,
     restaurant: "La Bella Cucina",
-    logo: "/female-wedding-planner-working-ceremony.webp",
+    logo: "/italian-restaurant-logo.png",
     message:
       "Saucy Menu transformed our customer experience. The AI recommendations increased our average order value by 35%, and our international guests love the instant translation feature.",
   },
   {
     id: 2,
     restaurant: "Dragon Palace",
-    logo: "/lady-grey-suit-smiling-camera-background-stylish-cafe-with-lights.webp",
+    logo: "/asian-restaurant-logo.jpg",
     message:
       "The analytics dashboard helped us identify our best-performing dishes and optimize our menu. We saw a 42% increase in revenue within the first three months of implementation.",
   },
   {
     id: 3,
     restaurant: "Burger Haven",
-    logo: "/portrait-happy-zero-waste-shop-vendor.webp",
+    logo: "/burger-restaurant-logo.png",
     message:
       "Our fast-paced environment needed a solution that could keep up. Saucy Menu handles our peak hours flawlessly, and the upselling features have been a game-changer for our bottom line.",
+  },
+  {
+    id: 4,
+    restaurant: "Sushi Master",
+    logo: "/sushi-restaurant-logo.jpg",
+    message:
+      "The real-time translation feature has been incredible for our diverse customer base. We've seen a significant increase in international customers and their satisfaction scores.",
   },
 ]
 
 export function TestimonialCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-  }
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
+  const [isVisible, setIsVisible] = useState(false)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const interval = setInterval(nextTestimonial, 5000)
-    return () => clearInterval(interval)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 },
+    )
+
+    if (carouselRef.current) {
+      observer.observe(carouselRef.current)
+    }
+
+    return () => observer.disconnect()
   }, [])
 
-  const current = testimonials[currentIndex]
-
   return (
-    <main>
+    <div ref={carouselRef} className="space-y-8">
+      <h2
+        className={`text-2xl md:text-3xl font-medium text-[#F8E6D2] text-center transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        Track Your Performance And Start Profiting From It
+      </h2>
 
-    <h2 className="text-xl w-full md:max-w-[30%] mx-auto md:text-4xl font-medium text-[#F8E6D2] text-center mb-16">
-          Track Your Performance And Start Profiting From It
-        </h2>
-        <section className="px-8 md:px-32" >
-
-     
-    <div className="relative bg-[#474747] rounded-3xl p-8 md:p-12 h-full">
-      <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
-        {/* Logo */}
-        <div className="flex-shrink-0">
-          <div className="relative aspect-square rounded-3xl overflow-hidden bg-white">
-            <Image
-              src={current.logo || "/placeholder.svg"}
-              alt={`${current.restaurant} logo`}
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-
-        {/* Content */}
-        <div>
-          <div className="flex-1">
-          <h2 className="text-2xl font-medium text-white mb-3">{current.restaurant}</h2>
-          <p className="text-gray-300 text-sm leading-relaxed">{current.message}</p>
-          </div>
-
-        {/* Navigation Buttons */}
-          <div className="hidden  gap-2 flex-shrink-0">
-          <button
-            onClick={prevTestimonial}
-            className="p-2 rounded-lg bg-[#343434] hover:bg-[#FF6A00] text-white transition-colors"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={nextTestimonial}
-            className="p-2 rounded-lg bg-[#343434] hover:bg-[#FF6A00] text-white transition-colors"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-          </div>
-            <div className="flex gap-2 mt-6">
-        {testimonials.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              index === currentIndex ? "bg-[#FF6A00] w-8" : "bg-gray-500 hover:bg-gray-400"
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {testimonials.map((testimonial, index) => (
+          <div
+            key={testimonial.id}
+            className={`bg-[#474747] rounded-3xl p-6 flex flex-col gap-4 transition-all duration-700 hover:bg-[#525252] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
-            aria-label={`Go to testimonial ${index + 1}`}
-          />
+            style={{ transitionDelay: `${index * 100 + 200}ms` }}
+          >
+            {/* Logo */}
+            <div className="relative w-16 h-16 rounded-2xl overflow-hidden bg-white flex-shrink-0">
+              <Image
+                src={testimonial.logo || "/placeholder.svg"}
+                alt={`${testimonial.restaurant} logo`}
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="flex-1">
+              <h4 className="text-lg font-medium text-white mb-2">{testimonial.restaurant}</h4>
+              <p className="text-gray-300 text-xs leading-relaxed">{testimonial.message}</p>
+            </div>
+          </div>
         ))}
       </div>
-        </div>
-       
-      </div>
-
-      {/* Dots Indicator */}
-    
     </div>
-       </section>
-     </main>
   )
 }
