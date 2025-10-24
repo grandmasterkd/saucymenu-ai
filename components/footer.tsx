@@ -9,7 +9,7 @@ export function Footer() {
   ]
 
   return (
-    <section className="pt-20 pb-8 bg-black" >
+    <section id="contact" className="pt-20 pb-8 bg-black" >
       <div className="px-8 md:px-60">
        
           <div className="flex flex-col md:flex-row items-start justify-between gap-4" >

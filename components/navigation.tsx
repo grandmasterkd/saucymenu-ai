@@ -26,7 +26,7 @@ export function Navigation() {
             <Link href="#pricing" className="hidden hover:text-[#F7941D] transition-colors">
               Pricing
             </Link>
-            <Link href="#security" className=" hover:text-[#F7941D] transition-colors">
+            <Link href="#contact" className=" hover:text-[#F7941D] transition-colors">
               Contact
             </Link>
           </div>

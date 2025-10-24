@@ -53,7 +53,7 @@ export function ProblemsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-16">
+    <section id="solutions" ref={sectionRef} className="py-16">
       <div className="container mx-auto px-8 md:px-32">
         <div
           className={`text-center mb-16 transition-all duration-700 ${
