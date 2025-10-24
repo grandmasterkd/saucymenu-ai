@@ -53,16 +53,17 @@ export function ProblemsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-20">
+    <section ref={sectionRef} className="py-16">
       <div className="container mx-auto px-8 md:px-32">
         <div
           className={`text-center mb-16 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="hidden text-2xl md:text-3xl font-medium text-[#F8E6D2] mb-4">
-            What Is Holding Your Restaurant Back Today
+          <h2 className="w-full md:w-5/6 mx-auto text-2xl md:text-4xl font-semibold tracking-tighter mb-2">
+            The Modern Way to Care for Every Guest
           </h2>
+          <p className="w-full md:w-3/4 mx-auto text-black/50 text-sm md:text-base" >Smarter menus, faster choices, and personalized experiences, all working quietly behind the scenes to make dining simple, seamless, and unforgettable.</p>
         </div>
 
         <div

@@ -49,7 +49,7 @@ export function FAQSection() {
   }
 
   return (
-    <section className="py-20 md:py-32 ">
+    <section className="py-16 ">
       <div className="px-8 md:px-60">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
           {/* Left Column */}

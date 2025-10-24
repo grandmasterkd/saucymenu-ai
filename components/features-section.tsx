@@ -16,25 +16,25 @@ const layers: LayerData[] = [
     id: 1,
     image: "/safari-window-saucymenudash.svg",
     headline: "See What’s Working, Instantly",
-    subtext: "From total dishes to real-time customer interactions, your dashboard tracks what people order, love, and talk about — all in one glance.",
+    subtext: "From total dishes to real-time customer interactions, your dashboard tracks what people order, love, and talk about, all in one glance.",
   },
   {
     id: 2,
     image: "/safari-window-saucymenumenu.svg",
     headline: "A Menu That Understands Your Guests",
-    subtext: "Tag every dish with cuisine, allergens, and dietary preferences — so customers can find exactly what fits them, faster.",
+    subtext: "Tag every dish with cuisine, allergens, and dietary preferences, so customers can find exactly what fits them, faster.",
   },
   {
     id: 3,
     image: "/safari-window-saucymenureviews.svg",
     headline: "Every Review, Linked to Real Orders",
-    subtext: "Each dish review connects to an order ID — giving you data that actually means something, not just opinions.",
+    subtext: "Each dish review connects to an order ID, giving you data that actually means something, not just opinions.",
   },
   {
     id: 4,
     image: "/safari-window-saucymenudishes.svg",
     headline: "Your Menu, Your Control",
-    subtext: "Add or remove dishes anytime — no full reuploads, no friction, no fuss. Update in seconds, serve better in minutes.",
+    subtext: "Add or remove dishes anytime, no full reuploads, no friction, no fuss. Update in seconds, serve better in minutes.",
   },
 ]
 
@@ -79,7 +79,7 @@ export function FeaturesSection() {
   const currentLayer = layers[activeLayer]
 
   return (
-    <section ref={sectionRef} id="features" className=" py-12 md:py-20">
+    <section ref={sectionRef} id="features" className=" py-12 md:py-16">
       <div className="px-8 md:px-60">
         <div className="space-y-4" >
         <h2
@@ -103,7 +103,7 @@ export function FeaturesSection() {
         </div>
       </div>
 
-        <div className="mt-4 relative w-full overflow-hidden">
+        <div className="mt-6 relative w-full overflow-hidden">
           <div className="flex items-center justify-center h-[300px] md:h-[500px] lg:h-[750px]">
             <div
               className="relative w-full transition-all duration-1200 ease-out opacity-0 animate-fadeInUp"

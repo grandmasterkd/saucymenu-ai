@@ -3,12 +3,12 @@ import { HeroImage } from "@/components/hero-image"
 
 export function HeroSection() {
   return (
-    <section className="pt-32 pb-20 bg-white">
+    <section className="pt-32 pb-24">
       <div className="container mx-auto">
         {/* Hero Body - Centered */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto gap-y-4">
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto gap-y-4">
           <h1 className="text-5xl font-semibold text-black tracking-tighter leading-tight">
-            Integrate AI Into Your Restaurant And <span className="font-serif italic">Pay Yourself Back</span>
+            Make Your Restaurant Smarter And <span className="font-serif italic">Pay Yourself Back</span>
           </h1>
 
           <p className="text-base text-black/50 max-w-2xl leading-relaxed">
@@ -16,11 +16,11 @@ export function HeroSection() {
             barriers, and deliver personalized dining experiences to every customer.
           </p>
 
-<div className="flex items-center gap-2" >
+<div className="mt-2 flex items-center gap-2" >
   <label htmlFor="book-now">
-            <input id="book-now" placeholder="myrestaurant@restaurant.co.uk" type="text" className="w-[300px] bg-[#F1F1F1] h-12 rounded-lg px-4 text-sm" />
+            <input id="book-now" placeholder="myrestaurant@restaurant.co.uk" type="text" className="w-[300px] bg-[#F1F1F1] h-12 rounded-lg px-6 text-sm" />
           </label>
-          <Button className="bg-[#F7941D] text-white hover:bg-[#E68C24] rounded-lg h-12 px-3 text-xs">
+          <Button className="bg-[#F7941D] text-white hover:bg-[#E68C24] rounded-full h-12 px-5 text-xs">
             Book A Demo
           </Button>
 </div>
