@@ -2,16 +2,16 @@ import Image from "next/image"
 
 export function HeroImage() {
   return (
-    <div className="relative max-w-6xl mx-auto pt-16">
+    <div className="relative w-full md:max-w-6xl mx-auto pt-10 md:pt-16">
       {/* Central iPhone Image */}
-      <div className="relative mx-auto w-full max-w-sm md:max-w-md lg:max-w-lg">
+      <div className="relative mx-auto w-full max-w-[330px] md:max-w-md lg:max-w-lg">
    
           <Image
             src="/customer-aidishhome.webp"
             alt="Saucy Menu App Interface"
             width={1080}
             height={1080}
-            className="object-cover"
+            className="object-contain aspect-auto md:object-cover"
           />
 
       </div>

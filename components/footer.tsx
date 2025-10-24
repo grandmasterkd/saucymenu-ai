@@ -12,15 +12,15 @@ export function Footer() {
     <section id="contact" className="pt-20 pb-8 bg-black" >
       <div className="px-8 md:px-60">
        
-          <div className="flex flex-col md:flex-row items-start justify-between gap-4" >
+          <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-4" >
             <Image src="/saucymenu-logo-white.svg" alt="Saucy Menu Logo" width={150} height={150} />
 
             <div className="flex items-start gap-16" >
               {footerList.map((section) => (
-                <div key={section.title} className="flex flex-col items-start mb-6" >
+                <div key={section.title} className="flex flex-col items-start mb-8" >
                   <h3 className="text-white text-xl font-medium mb-2" >{section.title}</h3>
                  {section.links.map((link) => (
-                    <span key={link} className="text-white/60 hover:text-white text-sm transition-colors">{link}</span>
+                    <span key={link} className="text-white/60 hover:text-white text-sm transition-colors cursor-pointer">{link}</span>
                  ))}
                 </div>
               ))}
@@ -29,7 +29,7 @@ export function Footer() {
           </div>
             
         
-              <div className="mt-8 w-full flex flex-col md:flex-row items-end justify-between gap-4" >
+              <div className="mt-8 w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-4" >
                 <div className="flex flex-col items-start gap-3" >
                   <div className="bg-white h-fit w-fit rounded-full px-4 py-2 text-xs font-medium flex items-center gap-x-2" ><span className="bg-green-500 animate-pulse w-2 h-2 rounded-full" > </span> All Systems Normal </div>                     
                 </div>

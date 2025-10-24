@@ -80,17 +80,17 @@ export function FeaturesSection() {
 
   return (
     <section ref={sectionRef} id="features" className=" py-12 md:py-16">
-      <div className="px-8 md:px-60">
+      <div className="px-8 md:px-32 xl:px-60">
         <div className="space-y-4" >
         <h2
-          className="text-xl md:text-4xl tracking-tighter font-semibold text-center mb-2 "
+          className="text-3xl md:text-4xl tracking-tighter font-semibold text-center mb-2 "
           key={`headline-${activeLayer}`}
         >
           {currentLayer.headline}
         </h2>
 
         <p
-          className="text-xs md:text-base text-black/50 text-center mb-2 max-w-3xl mx-auto leading-relaxed "
+          className="text-base text-black/50 text-center mb-2 max-w-3xl mx-auto leading-relaxed "
           key={`subtext-${activeLayer}`}
           style={{ animationDelay: "100ms" }}
         >
@@ -104,7 +104,7 @@ export function FeaturesSection() {
       </div>
 
         <div className="mt-6 relative w-full overflow-hidden">
-          <div className="flex items-center justify-center h-[300px] md:h-[500px] lg:h-[750px]">
+          <div className="flex items-center justify-center h-fit">
             <div
               className="relative w-full transition-all duration-1200 ease-out opacity-0 animate-fadeInUp"
               key={`image-${activeLayer}`}
@@ -123,7 +123,7 @@ export function FeaturesSection() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-4 mt-8 md:mt-12 px-4">
+          <div className="flex items-center justify-center gap-4 mt-4 md:mt-8 px-4">
             <button
               onClick={handlePrevious}
               className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-300"

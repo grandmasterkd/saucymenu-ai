@@ -49,8 +49,8 @@ export function FAQSection() {
   }
 
   return (
-    <section className="py-16 ">
-      <div className="px-8 md:px-60">
+    <section className="py-0 md:py-16 ">
+      <div className="px-8 md:px-32 xl:px-60">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
           {/* Left Column */}
           <div className="flex flex-col justify-between">
@@ -64,7 +64,7 @@ export function FAQSection() {
             </div>
 
             {/* Still Got Questions Container */}
-            <div className="bg-black rounded-3xl p-8 mt-8 md:mt-0">
+            <div className="bg-black rounded-3xl p-8 md:mt-0">
               <h3 className="text-xl md:text-2xl font-medium text-white mb-1">Still Got Questions?</h3>
               <p className="text-white/50 text-sm mb-6">
                 Our team is here to help you make the right decision for your restaurant. Book a demo and let's talk.
