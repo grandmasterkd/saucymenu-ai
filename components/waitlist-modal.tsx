@@ -3,8 +3,20 @@
 import type React from "react"
 
 import { useState } from "react"
+import { useForm, Controller } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { X } from "lucide-react"
+import { z } from "zod"
 import { createClient } from "@/lib/supabase/client"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { countries } from "@/lib/country-list"
+
+const waitlistSchema = z.object({
+  restaurantName: z.string().min(1, "Restaurant name is required"),
+  email: z.string().email("Invalid email address"),
+  country: z.string().min(1, "Country is required"),
+  state: z.string().min(1, "State/Region is required"),
+})
 
 interface WaitlistModalProps {
   isOpen: boolean
@@ -12,18 +24,21 @@ interface WaitlistModalProps {
 }
 
 export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
-  const [formData, setFormData] = useState({
-    restaurantName: "",
-    email: "",
-    country: "",
-    state: "",
-  })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const form = useForm({
+    resolver: zodResolver(waitlistSchema),
+    defaultValues: {
+      restaurantName: "",
+      email: "",
+      country: "",
+      state: "",
+    },
+  })
+
+  const onSubmit = async (data: any) => {
     setIsLoading(true)
     setError(null)
 
@@ -31,21 +46,16 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
     try {
       const { error: insertError } = await supabase.from("waitlist").insert({
-        restaurant_name: formData.restaurantName,
-        email: formData.email,
-        country: formData.country,
-        state: formData.state,
+        restaurant_name: data.restaurantName,
+        email: data.email,
+        country: data.country,
+        state: data.state,
       })
 
       if (insertError) throw insertError
 
       setSuccess(true)
-      setFormData({
-        restaurantName: "",
-        email: "",
-        country: "",
-        state: "",
-      })
+      form.reset()
 
       // Close modal after 2 seconds
       setTimeout(() => {
@@ -67,13 +77,6 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }))
-  }
-
   if (!isOpen) return null
 
   return (
@@ -89,13 +92,13 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
           className="absolute right-4 top-4 rounded-full p-2 hover:bg-gray-100 transition-colors"
           aria-label="Close modal"
         >
-          <X className="h-5 w-5 text-gray-500" />
+          <X className="h-5 w-5 text-gray-400 cursor-pointer" />
         </button>
 
         {/* Content */}
         <div className="p-6 md:p-8">
-          <h2 className="text-2xl md:text-3xl font-medium text-gray-900 mb-2">Join The Waitlist</h2>
-          <p className="text-sm text-gray-600 mb-6">Be the first to experience AI-powered restaurant management</p>
+          <h2 className="text-2xl font-semibold">Join The Waitlist</h2>
+          <p className="text-sm text-black/50 mb-6">Be the first to experience AI-powered restaurant management</p>
 
           {success ? (
             <div className="py-8 text-center">
@@ -108,69 +111,68 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               <p className="text-sm text-gray-600">We'll be in touch soon with exclusive early access.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <div>
-                <label htmlFor="restaurantName" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="restaurantName" className="block text-xs font-medium text-black/50 mb-1">
                   Restaurant Name
                 </label>
-                <input
-                  type="text"
-                  id="restaurantName"
-                  name="restaurantName"
-                  value={formData.restaurantName}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#F7941D] focus:border-transparent outline-none transition-all"
-                  placeholder="Your Restaurant"
-                />
+                 <input
+                   type="text"
+                   id="restaurantName"
+                   {...form.register("restaurantName")}
+                   className="text-sm w-full px-4 py-3 rounded-lg bg-gray-100 focus:ring-2 focus:ring-[#F7941D] focus:border-transparent outline-none transition-all"
+                   placeholder="Your Restaurant"
+                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-xs font-medium text-black/50 mb-1">
                   Email Address
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#F7941D] focus:border-transparent outline-none transition-all"
-                  placeholder="you@restaurant.com"
-                />
+                 <input
+                   type="email"
+                   id="email"
+                   {...form.register("email")}
+                   className="text-sm w-full px-4 py-3 rounded-lg bg-gray-100 focus:ring-2 focus:ring-[#F7941D] focus:border-transparent outline-none transition-all"
+                   placeholder="you@restaurant.com"
+                 />
               </div>
 
-              <div>
-                <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
-                  Country
-                </label>
-                <input
-                  type="text"
-                  id="country"
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#F7941D] focus:border-transparent outline-none transition-all"
-                  placeholder="United Kingdom"
-                />
-              </div>
+               <div>
+                 <label htmlFor="country" className="block text-xs font-medium text-black/50 mb-1">
+                   Country
+                 </label>
+                 <Controller
+                   name="country"
+                   control={form.control}
+                   render={({ field }) => (
+                     <Select value={field.value} onValueChange={field.onChange}>
+                       <SelectTrigger className="text-sm w-full px-4 py-3 rounded-lg bg-gray-100 focus:ring-2 focus:ring-[#F7941D] focus:border-transparent outline-none transition-all">
+                         <SelectValue placeholder="Select Country" />
+                       </SelectTrigger>
+                       <SelectContent>
+                         {countries.map(country => (
+                           <SelectItem key={country.name} value={country.name}>
+                             {country.flag} {country.name}
+                           </SelectItem>
+                         ))}
+                       </SelectContent>
+                     </Select>
+                   )}
+                 />
+               </div>
 
               <div>
-                <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="state" className="block text-xs font-medium text-black/50 mb-1">
                   State/Region
                 </label>
-                <input
-                  type="text"
-                  id="state"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#F7941D] focus:border-transparent outline-none transition-all"
-                  placeholder="London"
-                />
+                 <input
+                   type="text"
+                   id="state"
+                   {...form.register("state")}
+                   className="text-sm w-full px-4 py-3 rounded-lg bg-gray-100 focus:ring-2 focus:ring-[#F7941D] focus:border-transparent outline-none transition-all"
+                   placeholder="London"
+                 />
               </div>
 
               {error && (
